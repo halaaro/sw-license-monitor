@@ -1,5 +1,5 @@
 {
-  "forceCodeSigning": true,
+  "forceCodeSigning": false,
   "appId": "com.haleytec.sw-license-monitor",
   "files": [
     "build/swlicmgr.png",
@@ -9,8 +9,7 @@
     "exe/**"
   ],
   "publish": {
-    "provider": "generic",
-    "url": "https://github.com/aar0ndev/sw-license-monitor/releases/download/v0.7.3/SOLIDWORKS.License.Monitor.Setup.0.7.3.exe"
+    "provider": "github"
   },
   "compression": "normal",
   "copyright": "© 2020, Aaron Haley",
@@ -19,8 +18,5 @@
     "oneClick": true,
     "perMachine": false,
     "runAfterFinish": true
-  },
-  "win": {
-    "certificateSubjectName": "Aaron Haley"
   }
 }
