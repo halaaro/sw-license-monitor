@@ -23,14 +23,6 @@ import RadialGauge from '@/components/RadialGauge.vue'
 import { notify } from '@/notifications'
 import os from 'os'
 
-function getRanges (max) {
-  return [
-    Math.round((max * 0.6) / 5) * 5,
-    Math.round((max * 0.8) / 5) * 5,
-    Math.round((max * 0.9) / 5) * 5
-  ]
-}
-
 export const listeners = { onUpdate: [] }
 
 const inactiveNeedleColor = {
@@ -98,6 +90,25 @@ export default {
         }
       }
     },
+    getRanges (max, inc = 1) {
+      const r1 = Math.min(max - inc, Math.round((max * 0.9) / inc) * inc)
+      const r2 = Math.max(0, Math.min(r1 - inc, Math.round((max * 0.8) / inc) * inc))
+      const r3 = Math.max(0, Math.min(r2 - inc, Math.round((max * 0.6) / inc) * inc))
+      return [r3, r2, r1]
+    },
+    getIncrement (max) {
+      let inc = 1
+      if (max > 15) {
+        inc = 5
+      }
+      if (max > 75) {
+        inc = 10
+      }
+      if (max > 150) {
+        inc = 20
+      }
+      return inc
+    },
     updateGauge (twitch) {
       this.updateValue(0)
       return getLicenseUsage(this.license)
@@ -143,7 +154,7 @@ export default {
       }
 
       if (max !== undefined) {
-        const [range1, range2, range3] = getRanges(max)
+        const [range1, range2, range3] = this.getRanges(max)
         var highlights = [
           { from: 0, to: range1, color: 'rgba(255,255,255,1)' }, // white
           { from: range1, to: range2, color: 'rgba(255,255,128,1)' }, // yellow
@@ -152,7 +163,7 @@ export default {
         ]
 
         var majorTicks = [0]
-        var inc = 5
+        const inc = this.getIncrement(max)
         for (var i = inc * 1; i < max; i += inc) {
           majorTicks.push(i)
         }
