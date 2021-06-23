@@ -2,7 +2,7 @@
   "name": "sw-license-monitor",
   "productName": "SOLIDWORKS License Monitor",
   "description": "A desktop gauge to monitor SolidWorks license usage.",
-  "version": "0.7.5",
+  "version": "0.7.6",
   "author": "Aaron Haley",
   "copyright": "©2020, Aaron Haley",
   "homepage": "https://github.com/aar0ndev/sw-license-monitor",
