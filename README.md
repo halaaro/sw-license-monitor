@@ -27,3 +27,7 @@ yarn run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## License
+
+Published to Github under the MIT license. See the [LICENSE file](./LICENSE.txt) for license rights and limitations.
